@@ -1,16 +1,21 @@
-function toggleMode() {
-  const html = document.documentElement
-  html.classList.toggle("light")
+// Seleciona elementos
+const html = document.documentElement
+const img = document.querySelector("#profile img")
 
-  // pegar a tag img
-  const img = document.querySelector("#profile img")
-
-  // substituir a imagem
+// Função para atualizar a imagem conforme o tema
+function updateImage() {
   if (html.classList.contains("light")) {
-    // se tiver light mode, adicionar a imagem light
     img.setAttribute("src", "./assets/avatar-light.png")
   } else {
-    // set tiver sem light mode, manter a imagem normal
     img.setAttribute("src", "./assets/avatar.png")
   }
 }
+
+// Função que troca o tema
+function toggleMode() {
+  html.classList.toggle("light")
+  updateImage() // atualiza a imagem imediatamente após trocar o tema
+}
+
+// Atualiza a imagem assim que a página carrega
+window.addEventListener("DOMContentLoaded", updateImage)
